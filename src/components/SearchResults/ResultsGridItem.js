@@ -39,6 +39,10 @@ const ResultsGridItem = ({ classes, repo }) => (
       />
 
       <Typography className={classes.title} color="primary">
+        {repo.name}
+      </Typography>
+
+      <Typography className={classes.textSecondary}>
         Owner: {repo.owner.login}
       </Typography>
 
