@@ -63,14 +63,20 @@ const styles = {
 };
 
 class SearchForm extends Component {
+  state = {
+    language: '',
+    stars: '',
+  };
+
+  handleInputChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
   render() {
-    const {
-      classes,
-      language,
-      stars,
-      handleInputChange,
-      handleSearchSubmit,
-    } = this.props;
+    const { classes, handleSearchSubmit } = this.props;
+    const { language, stars } = this.state;
 
     return (
       <section className={classes.searchForm}>
@@ -84,7 +90,7 @@ class SearchForm extends Component {
             label="Language"
             value={language}
             className={classes.textFieldLarge}
-            onChange={handleInputChange('language')}
+            onChange={this.handleInputChange('language')}
             InputLabelProps={{
               FormLabelClasses: {
                 root: classes.cssLabel,
@@ -104,7 +110,7 @@ class SearchForm extends Component {
             label="Stars"
             value={stars}
             className={classes.textFieldSmall}
-            onChange={handleInputChange('stars')}
+            onChange={this.handleInputChange('stars')}
             InputLabelProps={{
               FormLabelClasses: {
                 root: classes.cssLabel,
@@ -123,7 +129,7 @@ class SearchForm extends Component {
         <Button
           variant="contained"
           className={classes.button}
-          onClick={() => handleSearchSubmit()}
+          onClick={() => handleSearchSubmit(language, stars)}
         >
           Search
         </Button>

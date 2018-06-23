@@ -24,29 +24,21 @@ const styles = {
 class App extends Component {
   // We'll use these to send as part of our URI params to GitHub
   state = {
+    searchInProgress: false,
     language: '',
     stars: '',
-    sortBy: '',
-    orderBy: '',
-    searchInProgress: false,
   };
 
-  handleInputChange = name => event => {
+  handleSearchSubmit = (language = '', stars = '') => {
     this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  handleSearchSubmit = () => {
-    this.setState({
+      language,
+      stars,
       searchInProgress: true,
     });
   };
 
   resetSearch = () => {
     this.setState({
-      language: '',
-      stars: '',
       searchInProgress: false,
     });
   };
@@ -64,8 +56,6 @@ class App extends Component {
 
           <section className={classes.contentWrapper}>
             <SearchForm
-              language={language}
-              stars={stars}
               handleInputChange={this.handleInputChange}
               handleSearchSubmit={this.handleSearchSubmit}
             />
