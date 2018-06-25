@@ -1,0 +1,1 @@
+This folder is here to hold components that will be rendered in multiple files
